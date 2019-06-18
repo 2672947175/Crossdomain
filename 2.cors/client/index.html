@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    这是客服端
+</body>
+<script>
+   let xhr =new XMLHttpRequest();
+   xhr.open('get','http://localhost:3001/cors',true)
+    // 设置请求头
+   xhr.setRequestHeader('name','ry')
+    // 携带 cookie
+   document.cookie = "user=1232"
+    // 跨域请求携带cookie 的方法    
+    xhr.withCredentials = true; // 携带cookie
+  
+    xhr.send()
+   xhr.onreadystatechange=function(){
+       if(xhr.readyState===4){
+            if(xhr.status==200||xhr.status==304){
+                // 获取响应头
+                // xhr.getResponseHeader
+                console.log(xhr.getResponseHeader('name'))
+                console.log(xhr.response)
+            }
+       }
+   }
+   
+</script>
+</html>
