@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    这是客服端
+</body>
+<script>
+    // jq 实现jsonp 跨域 只支持get 方法 原理就是 src 里面面直接引入
+    $.ajax({
+        // jsonp 跨域的请求方法要两种 
+        // 第一种
+        url:'http://localhost:3000/cors',
+        // 第二种
+        // url:'http://localhost:3000/cors?cb=show',
+        type:'GET',
+        dataType:'jsonp',
+        data:{
+            wd:'你好'
+        },
+        // Jsonp 回调
+          // 第一种 直接写
+        jsonp:'cb',
+         // 第二种 改变参数
+        // jsonp:"jsonpCallback",
+        // jsonpCallback:'show',
+        success:function(data){
+            console.log(data)
+        }
+    })
+</script>
+</html>
